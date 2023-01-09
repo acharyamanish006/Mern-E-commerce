@@ -1,0 +1,96 @@
+.homeContainer {
+  // border: 1px solid red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(30, 26, 26);
+  width: 100vw;
+
+  .homeWrapper {
+    display: flex;
+    justify-content: space-between;
+    // justify-content: space-between;
+    // padding-top: 5rem;
+    // padding-bottom: 5rem;
+    // border: 1px solid red;
+
+    .homeText {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      // border: 1px solid rgb(252, 252, 252);
+      color: #fff;
+      margin-right: 15vw;
+      // width: 30rem;
+
+      h2 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        font-style: italic;
+        margin-bottom: 1rem;
+        color: rgb(137, 233, 34);
+      }
+      h3 {
+        font-size: 2rem;
+        font-family: sans-serif;
+        font-weight: 800;
+        font-size: 2rem;
+      }
+      h4 {
+        font-weight: 400;
+        font-size: 1.5rem;
+        // color: rgb(122, 136, 192);
+        color: rgb(200, 88, 65);
+        margin-bottom: 0.5rem;
+      }
+      p {
+        // font-family: sans-serif;
+        font-size: 1.8rem;
+        font-weight: 400;
+        margin-bottom: 1rem;
+      }
+      button {
+        &:hover {
+          cursor: pointer;
+        }
+        width: 12rem;
+        border: none;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        color: rgb(255, 255, 255);
+        font-weight: 200;
+        font-style: italic;
+        font-size: 1.2rem;
+        background-color: rgb(137, 233, 34);
+      }
+    }
+    .homeImg {
+      // border: 1px solid rgb(0, 153, 255);
+      width: 38rem;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 800px) {
+  .homeContainer {
+    .homeWrapper {
+      display: flex;
+      flex-direction: column;
+      margin-top: 2rem;
+      margin-left: 1rem;
+      .homeText {
+        margin-bottom: 2rem;
+        p {
+          // font-family: sans-serif;
+          font-size: 1rem;
+          font-weight: 400;
+        }
+      }
+      .homeImg {
+        width: 20rem;
+      }
+    }
+  }
+}

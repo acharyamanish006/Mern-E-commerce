@@ -1,0 +1,101 @@
+.footerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footerContainer .footerWrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 100vw;
+}
+.footerContainer .footerWrapper .details {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+.footerContainer .footerWrapper .details div h3 {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+.footerContainer .footerWrapper .details div p {
+  transition: all 0.25s ease-in-out;
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+  cursor: pointer;
+  opacity: 0.5;
+}
+.footerContainer .footerWrapper .details div p:hover {
+  opacity: 0.8;
+}
+.footerContainer .footerWrapper .paymentSection {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+}
+.footerContainer .footerWrapper .paymentSection .payment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footerContainer .footerWrapper .paymentSection .payment h3 {
+  font-size: 1rem;
+}
+.footerContainer .footerWrapper .paymentSection .payment div {
+  cursor: pointer;
+  width: 5rem;
+  margin-left: 1rem;
+}
+.footerContainer .footerWrapper .paymentSection .payment div img {
+  width: 100%;
+}
+.footerContainer .footerWrapper .paymentSection .followUs {
+  display: flex;
+}
+.footerContainer .footerWrapper .paymentSection .followUs h3 .fontawesomeIcon {
+  cursor: pointer;
+  color: rgb(83, 81, 81);
+  margin-left: 1rem;
+}
+.footerContainer .footerWrapper .copyright {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+.footerContainer .footerWrapper .copyright div {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.footerContainer .footerWrapper .copyright div p {
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+@media only screen and (max-width: 800px) {
+  .footerContainer .footerWrapper .details {
+    padding-left: 1rem;
+    flex-direction: column;
+  }
+  .footerContainer .footerWrapper .details div {
+    margin-bottom: 1rem;
+  }
+  .footerContainer .footerWrapper .paymentSection {
+    flex-direction: column;
+  }
+  .footerContainer .footerWrapper .paymentSection .payment {
+    padding-left: 1rem;
+  }
+  .footerContainer .footerWrapper .paymentSection .followUs {
+    margin-left: 1rem;
+  }
+  .footerContainer .footerWrapper .copyright div {
+    padding-bottom: 5rem;
+  }
+  .footerContainer .footerWrapper .copyright div p {
+    font-size: 0.7rem;
+  }
+}/*# sourceMappingURL=footer.css.map */

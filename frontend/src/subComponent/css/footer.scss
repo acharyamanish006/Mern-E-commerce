@@ -1,0 +1,117 @@
+.footerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .footerWrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 100vw;
+
+    .details {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 2rem;
+      margin-bottom: 3rem;
+
+      div {
+        h3 {
+          font-weight: 600;
+          font-size: 1rem;
+          margin-bottom: 0.75rem;
+        }
+        p {
+          transition: all 0.25s ease-in-out;
+          &:hover {
+            opacity: 0.8;
+          }
+          font-size: 0.8rem;
+          margin-bottom: 0.25rem;
+          cursor: pointer;
+          opacity: 0.5;
+        }
+      }
+    }
+
+    .paymentSection {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 1rem;
+
+      .payment {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        h3 {
+          font-size: 1rem;
+        }
+        div {
+          cursor: pointer;
+          width: 5rem;
+          margin-left: 1rem;
+          img {
+            width: 100%;
+          }
+        }
+      }
+      .followUs {
+        display: flex;
+        h3 {
+          .fontawesomeIcon {
+            cursor: pointer;
+            color: rgb(83, 81, 81);
+            margin-left: 1rem;
+          }
+        }
+      }
+    }
+    .copyright {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: black;
+      div {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+
+        p {
+          color: white;
+          font-size: 0.8rem;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 800px) {
+  .footerContainer {
+    .footerWrapper {
+      .details {
+        padding-left: 1rem;
+        flex-direction: column;
+        div {
+          margin-bottom: 1rem;
+        }
+      }
+      .paymentSection {
+        flex-direction: column;
+        .payment {
+          padding-left: 1rem;
+        }
+
+        .followUs {
+          margin-left: 1rem;
+        }
+      }
+      .copyright {
+        div {
+          padding-bottom: 5rem;
+          p {
+            font-size: 0.7rem;
+          }
+        }
+      }
+    }
+  }
+}

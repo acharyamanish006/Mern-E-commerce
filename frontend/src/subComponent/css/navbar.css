@@ -1,0 +1,182 @@
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 0, 0);
+  width: 100vw;
+}
+.navContainer .Wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.navContainer .Wrapper .navWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.navContainer .Wrapper .navWrapper .logo {
+  width: 8rem;
+}
+.navContainer .Wrapper .navWrapper .logo:hover {
+  cursor: pointer;
+}
+.navContainer .Wrapper .navWrapper .logo img {
+  width: 100%;
+}
+.navContainer .Wrapper .navWrapper .search {
+  margin-left: 10vw;
+  margin-right: 10vw;
+  margin-top: 0.75rem;
+}
+.navContainer .Wrapper .navWrapper .search .searchBar {
+  width: 35rem;
+  height: 2rem;
+  padding-left: 0.5rem;
+  border-radius: 0.35rem;
+}
+.navContainer .Wrapper .navWrapper .search .fontawesomeIcon {
+  margin-left: 0.5rem;
+  width: 1rem;
+  color: #fff;
+}
+.navContainer .Wrapper .navWrapper .search .fontawesomeIcon:hover {
+  cursor: pointer;
+}
+.navContainer .Wrapper .navWrapper .search .fontawesomeIcon_search {
+  display: none;
+}
+.navContainer .Wrapper .navWrapper .search .fontawesomeIcon_X {
+  display: none;
+}
+.navContainer .Wrapper .navWrapper .signOut {
+  display: flex;
+}
+.navContainer .Wrapper .navWrapper .signOut:hover {
+  cursor: pointer;
+}
+.navContainer .Wrapper .navWrapper .signOut .button {
+  margin-bottom: 2rem;
+  margin-left: 0.35rem;
+  padding: 0;
+  border: none;
+  color: #fff;
+  background-color: rgb(0, 0, 0);
+}
+.navContainer .Wrapper .navWrapper .signOut .button:hover {
+  cursor: pointer;
+}
+.navContainer .Wrapper .navWrapper .signOut .button .fontawesomeIcon {
+  color: #fff;
+  margin-left: 0.5rem;
+  margin-top: 0.25rem;
+}
+.navContainer .Wrapper .navWrapper .signOut .button .fontawesomeIcon:hover {
+  cursor: pointer;
+}
+.navContainer .Wrapper .navWrapper .signOut .fontawesomeIcon_Responsive {
+  color: #fff;
+  margin-left: 0.5rem;
+  margin-top: 0.25rem;
+  display: none;
+}
+.navContainer .Wrapper .navWrapper .signOut .fontawesomeIcon_Responsive:hover {
+  cursor: pointer;
+}
+.navContainer .Wrapper .navList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navContainer .Wrapper .navList ul {
+  margin-bottom: 1rem;
+  list-style-type: none;
+  display: flex;
+}
+.navContainer .Wrapper .navList ul li {
+  margin-top: 1rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+.navContainer .Wrapper .navList ul li a {
+  transition: all 0.5s ease-in-out;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+.navContainer .Wrapper .navList ul li a:hover {
+  color: rgb(200, 88, 65);
+  cursor: pointer;
+}
+.navContainer .Wrapper .navList ul li a:hover .fontawesomeIcon {
+  color: rgb(200, 88, 65);
+}
+.navContainer .Wrapper .navList ul li a .fontawesomeIcon {
+  transition: all 0.5s ease-in-out;
+  margin-right: 0.35rem;
+  width: 1rem;
+  color: #fff;
+}
+.navContainer .Wrapper .navList ul li a .fontawesomeIcon:hover {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 800px) {
+  .navContainer .Wrapper {
+    display: flex;
+  }
+  .navContainer .Wrapper .navWrapper {
+    margin-top: 0.25rem;
+    display: flex;
+  }
+  .navContainer .Wrapper .navWrapper .logo {
+    width: 5rem;
+    margin-right: 50vw;
+  }
+  .navContainer .Wrapper .navWrapper .search {
+    margin: 0;
+  }
+  .navContainer .Wrapper .navWrapper .search .fontawesomeIcon {
+    display: none;
+    margin-top: 0;
+  }
+  .navContainer .Wrapper .navWrapper .search .fontawesomeIcon_search {
+    margin-top: 0.25rem;
+    display: block;
+  }
+  .navContainer .Wrapper .navWrapper .search .searchBar {
+    display: none;
+  }
+  .navContainer .Wrapper .navWrapper .signOut {
+    margin-left: 5vw;
+  }
+  .navContainer .Wrapper .navWrapper .signOut button {
+    display: none;
+  }
+  .navContainer .Wrapper .navWrapper .signOut .fontawesomeIcon_Responsive {
+    display: block;
+  }
+  .navContainer .Wrapper .navList {
+    z-index: 10000;
+    background-color: black;
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+  .navContainer .Wrapper .navList ul {
+    margin-bottom: 0;
+  }
+  .navContainer .Wrapper .navList ul li {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0;
+    margin-right: 8vw;
+  }
+  .navContainer .Wrapper .navList ul li a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+  }
+}/*# sourceMappingURL=navbar.css.map */

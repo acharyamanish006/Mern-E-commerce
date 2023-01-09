@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0
+    
+}
+body {
+
+    font-family: "Poppins";
+    box-sizing: border-box;
+    background-color: rgb(249, 249, 249);
+    scroll-behavior: smooth;
+    /* background-color: rgb(30, 26, 26); */
+}
+.App{
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

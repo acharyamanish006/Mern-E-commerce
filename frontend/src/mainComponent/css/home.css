@@ -1,0 +1,81 @@
+.homeContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(30, 26, 26);
+  width: 100vw;
+}
+.homeContainer .homeWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.homeContainer .homeWrapper .homeText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+  margin-right: 15vw;
+}
+.homeContainer .homeWrapper .homeText h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  font-style: italic;
+  margin-bottom: 1rem;
+  color: rgb(137, 233, 34);
+}
+.homeContainer .homeWrapper .homeText h3 {
+  font-size: 2rem;
+  font-family: sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+}
+.homeContainer .homeWrapper .homeText h4 {
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: rgb(200, 88, 65);
+  margin-bottom: 0.5rem;
+}
+.homeContainer .homeWrapper .homeText p {
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+.homeContainer .homeWrapper .homeText button {
+  width: 12rem;
+  border: none;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  color: rgb(255, 255, 255);
+  font-weight: 200;
+  font-style: italic;
+  font-size: 1.2rem;
+  background-color: rgb(137, 233, 34);
+}
+.homeContainer .homeWrapper .homeText button:hover {
+  cursor: pointer;
+}
+.homeContainer .homeWrapper .homeImg {
+  width: 38rem;
+}
+.homeContainer .homeWrapper .homeImg img {
+  width: 100%;
+}
+
+@media only screen and (max-width: 800px) {
+  .homeContainer .homeWrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    margin-left: 1rem;
+  }
+  .homeContainer .homeWrapper .homeText {
+    margin-bottom: 2rem;
+  }
+  .homeContainer .homeWrapper .homeText p {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  .homeContainer .homeWrapper .homeImg {
+    width: 20rem;
+  }
+}/*# sourceMappingURL=home.css.map */
