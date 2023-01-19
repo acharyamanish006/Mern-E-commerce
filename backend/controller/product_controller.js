@@ -2,10 +2,11 @@ const Product = require("../models/Product.js");
 const User = require("../models/User.js");
 
 const add_product = async (req, res) => {
-  const { name, price } = req.body;
+  const { name, price, img } = req.body;
   try {
     let new_product = await Product.create({
       name: name,
+      img: img,
       price: price,
     });
 

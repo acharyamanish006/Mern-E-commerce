@@ -7,10 +7,10 @@ export default function MainPage() {
   return (
     <div>
       <Home />
-      <TopProduct name="Top Choice's" />
-      <TopProduct name="Recommended for You" />
+      <TopProduct name="Top Tier Graphic's Card " priceRange={200000} />
+      <TopProduct name="Budget Graphic's Card " priceRange={40000} />
       <Banner />
-      <TopProduct name="Best Seller" />
+      <TopProduct name="LowEnd Graphic's Card" priceRange={25000} />
     </div>
   );
 }

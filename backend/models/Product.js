@@ -6,8 +6,8 @@ const product_Schema = new mongoose.Schema({
     Required: [true, "plz enter the product name"],
   },
   img: {
-    public_id: String,
-    url: String,
+    // public_id: String,
+    type: String,
   },
   price: {
     type: Number,

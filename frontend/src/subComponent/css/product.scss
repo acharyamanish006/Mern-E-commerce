@@ -7,6 +7,7 @@
   &:hover {
     box-shadow: 0 0 10px rgb(124, 123, 123);
   }
+  // width: fit-content;
   position: relative;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -20,7 +21,7 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  height: 30rem;
+  // height: 30rem;
 
   .fontawesomeIcon {
     z-index: 55;
@@ -35,10 +36,16 @@
     color: rgb(80, 79, 78);
   }
   .productImg {
+    // overflow: inherit;
     cursor: pointer;
     width: 15rem;
+    height: 15rem;
+    // background-color: red;
+    // box-shadow: 5rem black;
+
     img {
       width: 100%;
+      height: 100%;
     }
   }
   .productTitle {
