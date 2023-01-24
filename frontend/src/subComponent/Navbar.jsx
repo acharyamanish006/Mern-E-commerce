@@ -2,15 +2,94 @@ import logo from "../img/nvidia-png.png";
 import "./css/navbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { faX } from "@fortawesome/free-solid-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-import { Avatar } from "@mui/material";
+import { Link, Navigate } from "react-router-dom";
+import { Avatar, Menu, MenuItem } from "@mui/material";
+import { useEffect, useState } from "react";
+//
+import { useDispatch, useSelector } from "react-redux";
+import { user_info } from "../Redux-toolkit/Features/userInfo";
 
 export const Navbar = () => {
+  const dispatch = useDispatch();
+  //
+  const { auth } = useSelector((state) => state.isAuth);
+
+  const { user } = useSelector((state) => state.userInfo);
+  // if (auth) {
+  useEffect(() => {
+    dispatch(user_info());
+    // getData();
+  }, [dispatch, auth]);
+  // dispatch(user_info());
+
+  // {
+  //   user === null
+  //     : (user_img = user.avatar);
+  // }
+  // // }
+
+  //
+  // let user =  useSelector((state) => state.userInfo);
+  // async function getData() {
+
+  // }
+  ///res search bar
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  // <div>
+  //   {/* <Button
+  //     id="basic-button"
+  //     aria-controls={open ? "basic-menu" : undefined}
+  //     aria-haspopup="true"
+  //     aria-expanded={open ? "true" : undefined}
+  //     onClick={handleClick}
+  //   >
+  //     Dashboard
+  //   </Button> */}
+  //   <Menu
+  //     id="basic-menu"
+  //     anchorEl={anchorEl}
+  //     open={open}
+  //     onClose={handleClose}
+  //     MenuListProps={{
+  //       "aria-labelledby": "basic-button",
+  //     }}
+  //   >
+  //     <MenuItem onClick={handleClose}>Profile</MenuItem>
+  //     <MenuItem onClick={handleClose}>My account</MenuItem>
+  //     <MenuItem onClick={handleClose}>Logout</MenuItem>
+  //   </Menu>
+  // </div>;
+  //
+  const [search, setSearch] = useState("");
+
+  function search_value(e) {
+    setSearch(e.target.value);
+
+    // dispatch({
+    //   type: "searchValue",
+    //   payload: search,
+    // });
+  }
+  function send_search() {
+    // e.preventDefault();
+    // if (e.key === "Enter") {
+    <Navigate to={`/search/${search}`} />;
+    // console.log(`/search/${search}`);
+    // }
+  }
+  // const { name } = useSelector((state) => state.search);
+  // console.log(name);
   return (
     <div className="navContainer">
       <div className="Wrapper">
@@ -21,23 +100,67 @@ export const Navbar = () => {
             </Link>
           </div>
           <div className="search">
-            <input type="search" className="searchBar" />
-            <FontAwesomeIcon
-              icon={faSearch}
-              className="fontawesomeIcon  "
-            ></FontAwesomeIcon>
-            <FontAwesomeIcon
-              icon={faSearch}
-              className="fontawesomeIcon fontawesomeIcon_search"
-            ></FontAwesomeIcon>
-            <FontAwesomeIcon
+            <input
+              type="search"
+              className="searchBar"
+              // onKeyDown={send_search}
+              onChange={search_value}
+            />
+
+            <Link to={`/search/${search}`}>
+              <FontAwesomeIcon
+                icon={faSearch}
+                className="fontawesomeIcon  "
+                onClick={send_search}
+              ></FontAwesomeIcon>
+            </Link>
+
+            {/* res search bar */}
+            <Link to={`/search/${search}`}>
+              <FontAwesomeIcon
+                icon={faSearch}
+                className="fontawesomeIcon fontawesomeIcon_search"
+                id="basic-button"
+                aria-controls={open ? "basic-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? "true" : undefined}
+                onClick={handleClick}
+              />
+            </Link>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{
+                "aria-labelledby": "basic-button",
+              }}
+            >
+              <MenuItem className="w-screen ">
+                {" "}
+                <input
+                  type="search"
+                  className="w-11/12 py-1 px-1"
+                  // onKeyDown={send_search}
+                  onChange={search_value}
+                />
+              </MenuItem>
+              {/* <MenuItem onClick={handleClose}>My account</MenuItem>
+              <MenuItem onClick={handleClose}>Logout</MenuItem> */}
+            </Menu>
+            {/* <FontAwesomeIcon
               icon={faX}
               className="fontawesomeIcon fontawesomeIcon_X"
-            ></FontAwesomeIcon>
+            ></FontAwesomeIcon> */}
           </div>
-          <div className="signOut">
+          <div className="avatar">
             <Link to={"/profile"}>
-              <Avatar />
+              {/* <Avatar className="w-full" /> */}
+              {user == null ? (
+                <Avatar sx={{ width: 45, height: 45 }} />
+              ) : (
+                <Avatar src={user.avatar} sx={{ width: 45, height: 45 }} />
+              )}
             </Link>
           </div>
         </div>

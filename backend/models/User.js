@@ -3,23 +3,23 @@ const mongoose = require("mongoose");
 const User_Schema = new mongoose.Schema({
   name: {
     type: String,
-    Required: [true, "please enter your name"],
+    required: true,
   },
   email: {
     type: String,
-    Required: [true, "please enter your name"],
+    required: true,
   },
   password: {
     type: String,
-    Required: [true, "please enter the password"],
+    required: true,
   },
   avatar: {
-    url: {
-      type: String,
-    },
-    public_id: {
-      type: String,
-    },
+    // url: {
+    type: String,
+    // },
+    // public_id: {
+    // type: String,
+    // },
   },
   myCart: [
     {

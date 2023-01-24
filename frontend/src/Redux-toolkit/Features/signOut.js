@@ -1,13 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-let product;
-
 export const sign_out = createAsyncThunk("/sign/out", async () => {
   return fetch("http://localhost:8080/api/v1/sign/out", {
     credentials: "include",
   })
     .then((res) => res.json)
-    .then((data) => console.log(data))
+    .then((data) => {
+      console.log(data);
+      alert("Your Signed Out");
+    })
     .catch((err) => console.log(err));
 });
 

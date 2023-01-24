@@ -28,6 +28,7 @@ const sign_in = async (req, res) => {
       };
       return res.cookie("token", token, token_option).json({
         success: true,
+        message: "Your Signed IN",
         user,
       });
     } else {
@@ -45,20 +46,28 @@ const sign_in = async (req, res) => {
 };
 
 const sign_up = async (req, res) => {
-  const { name, email, password } = req.body;
-  let new_user = await User.findOne({ email });
-  if (new_user) {
-    return res.json({
-      success: false,
-      message: "user already exist",
-    });
-  }
   try {
+    const { name, email, password, avatar } = req.body;
+    // console.log(name, email, password);
+    if ((name || email || password) == "") {
+      return res.json({
+        success: false,
+        message: "pls fill out ",
+      });
+    }
+    let new_user = await User.findOne({ email });
+    if (new_user) {
+      return res.json({
+        success: false,
+        message: "user already exist",
+      });
+    }
     let hash_password = await bcrypt.hash(password, 10);
     new_user = await User.create({
       name,
       email,
       password: hash_password,
+      avatar: avatar,
     });
     //sending cookie
     let token = jwt.sign(
@@ -73,6 +82,7 @@ const sign_up = async (req, res) => {
     };
     return res.cookie("token", token, token_option).json({
       success: true,
+      message: "Your Signed Up",
       new_user,
     });
   } catch (err) {
@@ -89,5 +99,20 @@ const sign_out = async (req, res) => {
     message: "signed out successfully",
   });
 };
+const user_info = async (req, res) => {
+  try {
+    const user_id = req.user._id;
+    const user = await User.findById(user_id);
+    res.json({
+      success: true,
+      user,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
 
-module.exports = { sign_in, sign_up, sign_out };
+module.exports = { sign_in, sign_up, sign_out, user_info };

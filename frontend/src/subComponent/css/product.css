@@ -5,6 +5,7 @@
 
 .products {
   transition: all 0.45s ease-in-out;
+  border-radius: 0.5rem;
   position: relative;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -21,6 +22,12 @@
 .products:hover {
   box-shadow: 0 0 10px rgb(124, 123, 123);
 }
+.products .fontawesomeIcon-red {
+  color: rgb(236, 48, 48);
+}
+.products .fontawesomeIcon-gray {
+  color: rgb(80, 79, 78);
+}
 .products .fontawesomeIcon {
   z-index: 55;
   transition: all 0.25s ease-in-out;
@@ -28,7 +35,6 @@
   top: 5px;
   right: 10px;
   position: absolute;
-  color: rgb(80, 79, 78);
 }
 .products .fontawesomeIcon:hover {
   color: rgb(236, 48, 48);

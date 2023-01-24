@@ -16,6 +16,7 @@ import { LoadingButton } from "@mui/lab";
 
 //react-router-dom
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 //redux-toolkit
 import { useDispatch, useSelector } from "react-redux";
@@ -43,7 +44,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
-  const { loading } = useSelector((state) => state.signIn);
+  const { loading, auth } = useSelector((state) => state.signIn);
 
   const dispatch = useDispatch();
   const handleSubmit = (event) => {
@@ -52,11 +53,19 @@ export default function SignIn() {
     const email = data.get("email");
     const password = data.get("password");
     dispatch(sign_in({ email, password }));
+
     console.log({
       email: data.get("email"),
       password: data.get("password"),
     });
   };
+  useEffect(() => {
+    dispatch({
+      type: "is_Auth",
+      payload: auth,
+    });
+    console.log(auth);
+  }, [dispatch, auth]);
 
   return (
     <div className="bg-gray-50 m-4 rounded-md  p-5 px-10">

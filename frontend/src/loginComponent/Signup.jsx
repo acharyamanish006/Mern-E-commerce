@@ -17,6 +17,8 @@ import { LoadingButton } from "@mui/lab";
 //redux-toolkit
 import { useDispatch, useSelector } from "react-redux";
 import { sign_up } from "../Redux-toolkit/Features/signUp";
+import { useEffect, useState } from "react";
+import { Stack } from "@mui/material";
 
 function Copyright(props) {
   return (
@@ -40,7 +42,17 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
-  const { loading } = useSelector((state) => state.signUp);
+  //img upload
+  const [img, setImg] = useState(null);
+  // const [img_url, setImg_url] = useState(null);
+
+  const formData = new FormData();
+  formData.append("file", img);
+  formData.append("upload_preset", "E-commerce_user");
+  // formData.append("cloud_name", "dru5tgtf6");
+
+  //
+  const { loading, auth } = useSelector((state) => state.signUp);
 
   const dispatch = useDispatch();
   const handleSubmit = (event) => {
@@ -49,13 +61,41 @@ export default function SignUp() {
     const name = data.get("firstName") + " " + data.get("lastName");
     const email = data.get("email");
     const password = data.get("password");
-    dispatch(sign_up({ name, email, password }));
+
+    //img
+    fetch("https://api.cloudinary.com/v1_1/dru5tgtf6/image/upload", {
+      method: "post",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((url) => {
+        console.log(url);
+        console.log(`${url.url}`);
+        const A_img = url.url;
+        //
+
+        //
+
+        //
+        // console.log(`img_url${img_url}`);
+        dispatch(sign_up({ name, email, password, A_img }));
+      })
+      .catch((err) => {
+        console.error(err);
+      });
     console.log({
       name: data.get("firstName") + " " + data.get("lastName"),
       email: data.get("email"),
       password: data.get("password"),
     });
   };
+  //
+  useEffect(() => {
+    dispatch({
+      type: "is_Auth",
+      payload: auth,
+    });
+  }, [dispatch, auth]);
 
   return (
     <div className="bg-gray-50 m-4 rounded-md  p-5 px-10">
@@ -125,6 +165,30 @@ export default function SignUp() {
                     autoComplete="new-password"
                   />
                 </Grid>
+                <Grid item xs={12}>
+                  <Stack direction="row" alignItems="center" spacing={2}>
+                    <Button variant="contained" component="label">
+                      User Profile
+                      <input
+                        hidden
+                        accept="image/*"
+                        // multiple
+                        type="file"
+                        onChange={(e) => setImg(e.target.files[0])}
+                        // value={img}
+                      />
+                    </Button>
+                  </Stack>
+                </Grid>
+                {/* <div className="p-5">
+                  <label className="font-bold"> Image of Product</label>
+                  <input
+                    type="file"
+                    className=" bg-gray-50 ml-2"
+                    onChange={(e) => setImg(e.target.files[0])}
+                    // value={img}
+                  />
+                </div> */}
                 <Grid item xs={12}>
                   <FormControlLabel
                     control={

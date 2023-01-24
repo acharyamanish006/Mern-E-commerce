@@ -1,53 +1,53 @@
 import React from "react";
 import Product from "../subComponent/Product";
-import "./css/Store.css";
+import "../mainComponent/css/Store.css";
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+import { useParams } from "react-router-dom";
 
-export default function Store() {
+export default function SearchedProduct() {
   const [product, setProduct] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/v1/get/all/product", {
+    fetch(`http://localhost:8080/api/v1/get/product/search/${id}`, {
       credentials: "include",
     })
       .then((res) => res.json())
       .then((data) => {
-        setProduct(data.product);
+        console.log(data);
+        setProduct(data.searched_product);
         // dispatch({
         //   type: "searchValue",
         // });
       })
       .catch((err) => console.log(err));
-  }, []);
-  // const dispatch = useDispatch();
-  const { search } = useSelector((state) => state.search);
+  }, [id]);
 
   //pagenation
   const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage, setPostPerPage] = useState(15);
+  const postPerPage = 15;
 
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
+  let totalPage;
 
-  const totalPage = Math.round(product.length / postPerPage) + 1;
+  product.length < 15
+    ? (totalPage = 1)
+    : (totalPage = Math.round(product.length / postPerPage) + 1);
 
-  console.log(search);
   return (
     <div className="productContainer">
       <div className="productWrapper">
         <div className="productHeading">
-          <h3> New Offer </h3>
+          <h3>
+            {" "}
+            {product.length} results for "{id}"
+          </h3>
         </div>
         <div className="productCollection">
           {product
-            .filter((item) => {
-              return search.toLowerCase() === " "
-                ? item
-                : item.name.toLowerCase().includes(search);
-            })
             .map((data) => {
               return <Product key={data._id} data={data} />;
             })

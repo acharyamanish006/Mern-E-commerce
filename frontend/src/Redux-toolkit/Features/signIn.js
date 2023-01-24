@@ -15,9 +15,17 @@ export const sign_in = createAsyncThunk(
       .then((res) => res.json())
       .then((data) => {
         // return data.success;
+
+        alert(data.message);
+
         console.log(data.success);
+
+        // window.location.reload(true);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        alert(err.message);
+      });
   }
 );
 

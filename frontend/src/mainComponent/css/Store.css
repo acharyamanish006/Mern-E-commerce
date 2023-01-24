@@ -16,6 +16,8 @@
 }
 .productContainer .productWrapper .productCollection {
   background-color: white;
+  box-shadow: 1px 1px 8px 1px rgb(229, 228, 228);
+  border-radius: 0.4rem;
   min-width: 90vw;
   margin-bottom: 5rem;
   display: grid;

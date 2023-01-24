@@ -23,7 +23,7 @@ const add_product = async (req, res) => {
 };
 const get_product = async (req, res) => {
   const product_id = req.params.id;
-  console.log(id);
+  // console.log(id);
   try {
     let product = await Product.findById(product_id);
 
@@ -60,6 +60,7 @@ const delete_product = async (req, res) => {
 
     res.json({
       success: true,
+      message: "Product Deleted",
       product,
     });
   } catch (err) {
@@ -83,6 +84,7 @@ const update_product = async (req, res) => {
     await product.save();
     res.json({
       success: true,
+      message: "Product Updated",
       product,
     });
   } catch (err) {
@@ -97,8 +99,10 @@ const add_toCart = async (req, res) => {
   const product_id = req.params.id;
   try {
     const user_id = req.user._id;
+    // const product = await Product.findById(product_id);
     const user = await User.findById(user_id).populate("myCart");
     const { myCart } = user;
+    // const { isCart } = product;
 
     for (let data of myCart) {
       if (data._id == product_id) {
@@ -110,10 +114,14 @@ const add_toCart = async (req, res) => {
     }
     myCart.push(product_id);
     await user.save();
+    isCart = true;
 
     res.json({
       success: true,
+      message: "Added to Cart",
+
       user,
+      // product,
     });
   } catch (err) {
     res.json({
@@ -127,8 +135,10 @@ const add_toWishList = async (req, res) => {
   const product_id = req.params.id;
   try {
     const user_id = req.user._id;
+    const product = await Product.findById(product_id);
     const user = await User.findById(user_id).populate("myWishList");
     const { myWishList } = user;
+    // let { isWishlist } = product;
 
     for (let data of myWishList) {
       if (data._id == product_id) {
@@ -141,10 +151,14 @@ const add_toWishList = async (req, res) => {
 
     myWishList.push(product_id);
     await user.save();
+    // isWishlist = true;
+    await product.save();
 
     res.json({
       success: true,
+      message: "Added to Wishlist",
       user,
+      product,
     });
 
     // myWishList.map(async (data) => {
@@ -174,6 +188,67 @@ const add_toWishList = async (req, res) => {
   }
 };
 
+const get_cart = async (req, res) => {
+  try {
+    const user_id = req.user._id;
+    const user = await User.findById(user_id).populate("myCart");
+    const { myCart } = user;
+    res.json({
+      myCart,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
+const get_wishlist = async (req, res) => {
+  try {
+    const user_id = req.user._id;
+    const user = await User.findById(user_id).populate("myWishList");
+    const { myWishList } = user;
+    res.json({
+      myWishList,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
+const search_product = async (req, res) => {
+  // res.json("hi");
+  try {
+    let search_param = req.params.search_Q;
+    const product = await Product.find();
+
+    const searched_product = product.filter((data) => {
+      return search_param.toLowerCase() === " "
+        ? data
+        : data.name.toLowerCase().includes(search_param);
+    });
+    // ((product) => {
+    //       product.filter((data) => {
+    //         return search_param.toLowerCase() === " "
+    //           ? data
+    //           : data.name.toLowerCase().includes(search_param);
+    //       });
+    res.json({
+      success: true,
+      searched_product,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+
 module.exports = {
   add_product,
   get_allProduct,
@@ -182,4 +257,7 @@ module.exports = {
   update_product,
   add_toCart,
   add_toWishList,
+  get_cart,
+  get_wishlist,
+  search_product,
 };

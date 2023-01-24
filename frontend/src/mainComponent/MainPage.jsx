@@ -7,7 +7,7 @@ export default function MainPage() {
   return (
     <div>
       <Home />
-      <TopProduct name="Top Tier Graphic's Card " priceRange={200000} />
+      <TopProduct name="Top Tier Graphic's Card " priceRange={400000} />
       <TopProduct name="Budget Graphic's Card " priceRange={40000} />
       <Banner />
       <TopProduct name="LowEnd Graphic's Card" priceRange={25000} />

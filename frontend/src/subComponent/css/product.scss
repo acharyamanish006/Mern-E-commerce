@@ -7,6 +7,7 @@
   &:hover {
     box-shadow: 0 0 10px rgb(124, 123, 123);
   }
+  border-radius: 0.5rem;
   // width: fit-content;
   position: relative;
   padding-left: 1rem;
@@ -22,10 +23,17 @@
   justify-content: space-between;
   flex-direction: column;
   // height: 30rem;
-
+  .fontawesomeIcon-red {
+    color: rgb(236, 48, 48);
+  }
+  .fontawesomeIcon-gray {
+    color: rgb(80, 79, 78);
+  }
   .fontawesomeIcon {
     z-index: 55;
     transition: all 0.25s ease-in-out;
+    // color: rgb(236, 48, 48);
+
     &:hover {
       color: rgb(236, 48, 48);
     }
@@ -33,7 +41,6 @@
     top: 5px;
     right: 10px;
     position: absolute;
-    color: rgb(80, 79, 78);
   }
   .productImg {
     // overflow: inherit;

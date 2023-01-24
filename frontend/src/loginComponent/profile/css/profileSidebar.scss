@@ -1,0 +1,72 @@
+// .show {
+//   display: none;
+//   .mui-close {
+//     animation: opacity 1s;
+//   }
+//   .mui-ham {
+//     animation: opacity 1s;
+//   }
+// }
+@media only screen and (max-width: 600px) {
+  .profile_sidebar {
+    display: none;
+  }
+  //   .show {
+  //     display: block;
+  //     position: absolute;
+  //     z-index: 5000;
+  //     left: 1rem;
+  .profileSidebarContainer {
+    width: 90vw;
+    // background-color: #f0f0f0;
+
+    //   box-shadow: -5px 5px 5px 1px #888888;
+
+    // justify-content: center;
+    // p {
+    // }
+
+    div {
+      p {
+        margin-left: 5vw;
+      }
+    }
+  }
+}
+
+//   .profileSidebar {
+//     background-color: rgb(151, 149, 149);
+//     width: auto;
+//     position: absolute;
+//     left: 0;
+//     z-index: 500;
+//     display: none;
+//     h3 {
+//       color: white;
+//       font: bold;
+//     }
+//   }
+//   .profileSidebar-show {
+//     display: block;
+//     //   transform: translate(0, 10px);
+//     animation: showHam 1s;
+//   }
+// }
+// @keyframes showHam {
+//   from {
+//     opacity: 0;
+//     transform: translate(-200px, 0);
+//   }
+//   to {
+//     opacity: 1;
+//     transform: translate(0, 0);
+//   }
+// }
+// @keyframes opacity {
+//   from {
+//     opacity: 0;
+//   }
+//   to {
+//     opacity: 1;
+//   }
+// }

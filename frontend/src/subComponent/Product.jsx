@@ -5,36 +5,47 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import Rating from "@mui/material/Rating";
-//react state
-import { useEffect, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { fetch_allProduct } from "../Redux-toolkit/Features/FetchData";
 
 export default function Product({ data }) {
-  // let product = useSelector((state) => state.allProduct);
-  // console.log(product);
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(fetch_allProduct());
-  // }, []);
-  // console.log(data);
-  const { name, price, img } = data;
+  const { name, img, isWishlist } = data;
+  const id = data._id;
+  // console.log(isWishlist);
 
   let Pname = name.substring(0, 80);
-  // if (name.length > 5) {
-  //   let Pname = name.substring(0, 50);
-  //   return Pname;
-  // }
-  // const name = data.name;
-  // const price = data.price;
+  let price = data.price.toLocaleString("en-US");
+
+  function add_toCart() {
+    fetch(`http://localhost:8080/api/v1/get/product/cart/${id}`, {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        alert("product add to cart");
+      })
+      .catch((err) => console.log(err));
+  }
+  function add_toWishlist() {
+    fetch(`http://localhost:8080/api/v1/get/product/wishlist/${id}`, {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        alert("product add to cart");
+      })
+      .catch((err) => console.log(err));
+  }
 
   return (
     <div>
       <div className="products">
         <FontAwesomeIcon
+          onClick={add_toWishlist}
           icon={faHeart}
           className={
-            "fontawesomeIcon " + (onclick ? "fontawesomeIcon--red" : "")
+            "fontawesomeIcon " +
+            (isWishlist ? "fontawesomeIcon-red" : "fontawesomeIcon-gray")
           }
         ></FontAwesomeIcon>
         <div className="productImg">
@@ -52,7 +63,7 @@ export default function Product({ data }) {
         </div>
 
         <div className="productBtn">
-          <button>
+          <button onClick={add_toCart}>
             <FontAwesomeIcon
               icon={faShoppingCart}
               className="fontawesomeIcon_Cart"

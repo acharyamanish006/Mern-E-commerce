@@ -21,6 +21,11 @@ const product_Schema = new mongoose.Schema({
     min: 1,
     max: 5,
   },
+  isWishlist: {
+    type: Boolean,
+    default: false,
+  },
+
   createdAt: {
     type: Date,
     default: Date.now,

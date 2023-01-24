@@ -49,38 +49,39 @@
 .navContainer .Wrapper .navWrapper .search .fontawesomeIcon_X {
   display: none;
 }
-.navContainer .Wrapper .navWrapper .signOut {
+.navContainer .Wrapper .navWrapper .avatar {
+  margin-top: 0.5rem;
   display: flex;
 }
-.navContainer .Wrapper .navWrapper .signOut:hover {
+.navContainer .Wrapper .navWrapper .avatar:hover {
   cursor: pointer;
 }
-.navContainer .Wrapper .navWrapper .signOut .button {
+.navContainer .Wrapper .navWrapper .avatar .button {
   margin-bottom: 2rem;
   margin-left: 0.35rem;
-  padding: 0;
+  padding-bottom: 1rem;
   border: none;
   color: #fff;
   background-color: rgb(0, 0, 0);
 }
-.navContainer .Wrapper .navWrapper .signOut .button:hover {
+.navContainer .Wrapper .navWrapper .avatar .button:hover {
   cursor: pointer;
 }
-.navContainer .Wrapper .navWrapper .signOut .button .fontawesomeIcon {
+.navContainer .Wrapper .navWrapper .avatar .button .fontawesomeIcon {
   color: #fff;
   margin-left: 0.5rem;
   margin-top: 0.25rem;
 }
-.navContainer .Wrapper .navWrapper .signOut .button .fontawesomeIcon:hover {
+.navContainer .Wrapper .navWrapper .avatar .button .fontawesomeIcon:hover {
   cursor: pointer;
 }
-.navContainer .Wrapper .navWrapper .signOut .fontawesomeIcon_Responsive {
+.navContainer .Wrapper .navWrapper .avatar .fontawesomeIcon_Responsive {
   color: #fff;
   margin-left: 0.5rem;
   margin-top: 0.25rem;
   display: none;
 }
-.navContainer .Wrapper .navWrapper .signOut .fontawesomeIcon_Responsive:hover {
+.navContainer .Wrapper .navWrapper .avatar .fontawesomeIcon_Responsive:hover {
   cursor: pointer;
 }
 .navContainer .Wrapper .navList {
@@ -133,7 +134,7 @@
     margin-right: 50vw;
   }
   .navContainer .Wrapper .navWrapper .search {
-    margin: 0;
+    margin: 20px 0 0 0;
   }
   .navContainer .Wrapper .navWrapper .search .fontawesomeIcon {
     display: none;
@@ -146,13 +147,16 @@
   .navContainer .Wrapper .navWrapper .search .searchBar {
     display: none;
   }
-  .navContainer .Wrapper .navWrapper .signOut {
+  .navContainer .Wrapper .navWrapper .avatar {
+    margin-top: 0;
     margin-left: 5vw;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
-  .navContainer .Wrapper .navWrapper .signOut button {
+  .navContainer .Wrapper .navWrapper .avatar button {
     display: none;
   }
-  .navContainer .Wrapper .navWrapper .signOut .fontawesomeIcon_Responsive {
+  .navContainer .Wrapper .navWrapper .avatar .fontawesomeIcon_Responsive {
     display: block;
   }
   .navContainer .Wrapper .navList {
@@ -160,7 +164,7 @@
     background-color: black;
     width: 100vw;
     position: fixed;
-    bottom: 0;
+    bottom: -5px;
     left: 0;
   }
   .navContainer .Wrapper .navList ul {

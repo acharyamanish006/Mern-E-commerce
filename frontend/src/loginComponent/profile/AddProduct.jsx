@@ -11,6 +11,8 @@ import ProfileSidebar from "./profileSidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { post_product } from "../../Redux-toolkit/Features/addData";
 
+import "./css/profileSidebar.css";
+
 function AddProduct() {
   const [loading, setloading] = useState(false);
   const [img, setImg] = useState(null);
@@ -18,6 +20,7 @@ function AddProduct() {
   const [product, setProduct] = useState("");
   const [price, setPrice] = useState("");
   const [img_url, setImg_url] = useState("");
+  //
 
   // const { loading } = useSelector((state) => state.addProduct);
 
@@ -38,12 +41,15 @@ function AddProduct() {
         // setImg_url(data.url);
         dispatch(post_product({ product, price, data }));
         setloading(false);
+        alert("Product has been created successfully");
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+      });
   }
   return (
     <div className="flex">
-      <div>
+      <div className="profile_sidebar">
         <ProfileSidebar />
       </div>
       <div className="bg-white p-10 m-2">
@@ -142,6 +148,16 @@ function AddProduct() {
               id=""
               className="bg-gray-50 ml-4 border-2 rounded-md"
               onChange={(e) => setPrice(e.target.value)}
+            />
+          </div>
+          <div className="p-5">
+            <label className="font-bold">Discounted Price</label>
+            <input
+              type="number"
+              name=""
+              id=""
+              className="bg-gray-50 ml-4 border-2 rounded-md"
+              // onChange={(e) => setPrice(e.target.value)}
             />
           </div>
           <div className="p-5">

@@ -15,6 +15,7 @@ export default function TopProduct({ name, priceRange }) {
       })
       .catch((err) => console.log(err));
   }, []);
+  //.sort((a, b) => parseFloat(b.price) - parseFloat(a.price))
   return (
     <div className="ProductContainer">
       <div className="ProductWrapper">
@@ -23,6 +24,7 @@ export default function TopProduct({ name, priceRange }) {
         </div>
         <div className="ProductCollection">
           {product
+            .sort((a, b) => parseFloat(b.price) - parseFloat(a.price))
             .filter((product) => product.price < priceRange)
             .map((data) => {
               return <Product key={data._id} data={data} />;
