@@ -13,18 +13,36 @@ const product_Schema = new mongoose.Schema({
     type: Number,
     Required: [true, "plz enter the product price"],
   },
+  description: {
+    type: String,
+    default: "Product details are unavailable",
+  },
+  condition: {
+    type: String,
+  },
+  brand: {
+    type: String,
+  },
   disPrice: {
     type: Number,
   },
-  rating: {
+  Rating: {
     type: Number,
-    min: 1,
-    max: 5,
+    // min: 1,
+    // max: 5,
+    default: 0,
   },
-  isWishlist: {
-    type: Boolean,
-    default: false,
-  },
+
+  reviews: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user",
+      },
+      rating: Number,
+      review: String,
+    },
+  ],
 
   createdAt: {
     type: Date,

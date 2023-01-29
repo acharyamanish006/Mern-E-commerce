@@ -116,17 +116,17 @@ export const Navbar = () => {
             </Link>
 
             {/* res search bar */}
-            <Link to={`/search/${search}`}>
-              <FontAwesomeIcon
-                icon={faSearch}
-                className="fontawesomeIcon fontawesomeIcon_search"
-                id="basic-button"
-                aria-controls={open ? "basic-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
-                onClick={handleClick}
-              />
-            </Link>
+            {/* <Link to={`/search/${search}`}> */}
+            <FontAwesomeIcon
+              icon={faSearch}
+              className="fontawesomeIcon fontawesomeIcon_search"
+              id="basic-button"
+              aria-controls={open ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
+            />
+            {/* </Link> */}
             <Menu
               id="basic-menu"
               anchorEl={anchorEl}
@@ -140,10 +140,21 @@ export const Navbar = () => {
                 {" "}
                 <input
                   type="search"
-                  className="w-11/12 py-1 px-1"
+                  className="w-10/12 py-1 px-1 mr-3"
                   // onKeyDown={send_search}
                   onChange={search_value}
                 />
+                <Link to={`/search/${search}`}>
+                  <FontAwesomeIcon
+                    icon={faSearch}
+                    className="fontawesomeIcon fontawesomeIcon_search"
+                    id="basic-button"
+                    aria-controls={open ? "basic-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    onClick={send_search}
+                  />
+                </Link>
               </MenuItem>
               {/* <MenuItem onClick={handleClose}>My account</MenuItem>
               <MenuItem onClick={handleClose}>Logout</MenuItem> */}

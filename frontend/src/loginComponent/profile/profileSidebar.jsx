@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
@@ -7,10 +7,7 @@ import ExitToAppOutlinedIcon from "@mui/icons-material/ExitToAppOutlined";
 import StorefrontOutlinedIcon from "@mui/icons-material/StorefrontOutlined";
 import ListAltOutlinedIcon from "@mui/icons-material/ListAltOutlined";
 import { Link, Navigate } from "react-router-dom";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
 
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./css/profileSidebar.css";
@@ -24,29 +21,19 @@ const ProfileSidebar = () => {
       .then((res) => res.json)
       .then((data) => {
         console.log(data);
-        // window.location.reload(true);
-        alert("Your Signed Out");
         dispatch({
           type: "is_Auth",
           payload: false,
         });
-        // <Navigate to={"/"} />;
+        <Navigate to={"/signIn"} />;
+        alert("Your Signed Out");
       })
       .catch((err) => console.log(err));
   }
-  const [show, setShow] = useState(false);
-  function ham() {
-    // console.log(`sjw${show}`);
-    setShow(!show);
-  }
 
   // useEffect(() => {
-  //   dispatch({
-  //     type: "is_Auth",
-  //     payload: auth,
-  //   });
-  //   console.log(auth);
-  // }, [dispatch, auth]);
+  //   dispatch(user_info());
+  // }, [dispatch]);
   const { user } = useSelector((state) => state.userInfo);
 
   return (
@@ -58,12 +45,7 @@ const ProfileSidebar = () => {
           <MenuIcon className="mui-ham" />
         )}
       </div> */}
-      <div
-        className={
-          " profileSidebar bg-white p-10 m-2 h-fit rounded-md " +
-          (show ? "profileSidebar-show " : "")
-        }
-      >
+      <div className={" profileSidebar bg-white p-10 m-2 h-fit rounded-md "}>
         <div>
           <h3 className="capitalize">Welcome {user.name}</h3>
         </div>

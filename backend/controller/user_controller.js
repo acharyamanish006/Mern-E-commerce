@@ -114,5 +114,36 @@ const user_info = async (req, res) => {
     });
   }
 };
+const anyUser_info = async (req, res) => {
+  try {
+    const user_id = req.params.id;
+    const user = await User.findById(user_id);
+    res.json({
+      success: true,
+      user,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
 
-module.exports = { sign_in, sign_up, sign_out, user_info };
+// const update_info = async (req, res) => {
+//   try {
+//     const user_id = req.user._id;
+//     const user = await User.findById(user_id);
+//     res.json({
+//       success: true,
+//       user,
+//     });
+//   } catch (err) {
+//     res.json({
+//       success: false,
+//       message: err.message,
+//     });
+//   }
+// };
+
+module.exports = { sign_in, sign_up, sign_out, user_info, anyUser_info };

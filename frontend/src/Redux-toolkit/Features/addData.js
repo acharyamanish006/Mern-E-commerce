@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const post_product = createAsyncThunk(
   "/post/product",
-  async ({ product, price, data }) => {
+  async ({ product, price, data, description, brand, condition, disPrice }) => {
     return fetch("http://localhost:8080/api/v1/add/product ", {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -11,12 +11,16 @@ export const post_product = createAsyncThunk(
         name: product,
         price: price,
         img: data.url,
+        description: description,
+        brand: brand,
+        condition: condition,
+        disPrice: disPrice,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         // return data.success;
-        console.log(data);
+        return data;
       })
       .catch((err) => console.log(err));
   }
@@ -25,6 +29,7 @@ export const post_product = createAsyncThunk(
 const postProduct = createSlice({
   name: "postProduct",
   initialState: {
+    post: {},
     loading: false,
   },
   extraReducers: {
@@ -32,6 +37,7 @@ const postProduct = createSlice({
       state.loading = true;
     },
     [post_product.fulfilled]: (state, action) => {
+      state.post = action.payload;
       state.loading = false;
     },
     [post_product.rejected]: (state, action) => {

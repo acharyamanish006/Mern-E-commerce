@@ -21,6 +21,7 @@ import { useEffect } from "react";
 //redux-toolkit
 import { useDispatch, useSelector } from "react-redux";
 import { sign_in } from "../Redux-toolkit/Features/signIn";
+import { useState } from "react";
 
 function Copyright(props) {
   return (
@@ -44,27 +45,27 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
-  const { loading, auth } = useSelector((state) => state.signIn);
+  const [loading, setLoading] = useState(false);
+  const { auth } = useSelector((state) => state.signIn);
 
   const dispatch = useDispatch();
   const handleSubmit = (event) => {
+    setLoading(true);
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get("email");
     const password = data.get("password");
+    if (email === "" || password === "") {
+      return alert("fields can't be empty");
+    }
     dispatch(sign_in({ email, password }));
-
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    setLoading(false);
   };
   useEffect(() => {
     dispatch({
       type: "is_Auth",
       payload: auth,
     });
-    console.log(auth);
   }, [dispatch, auth]);
 
   return (

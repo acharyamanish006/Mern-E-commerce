@@ -42,6 +42,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+  const [Loading, setLoading] = useState(false);
   //img upload
   const [img, setImg] = useState(null);
   // const [img_url, setImg_url] = useState(null);
@@ -56,11 +57,19 @@ export default function SignUp() {
 
   const dispatch = useDispatch();
   const handleSubmit = (event) => {
+    setLoading(true);
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const name = data.get("firstName") + " " + data.get("lastName");
     const email = data.get("email");
     const password = data.get("password");
+
+    if (email === "" || password === "") {
+      return alert("fields can't be empty");
+    }
+    // if () {
+    //   console.log(`no email`);
+    // }
 
     //img
     fetch("https://api.cloudinary.com/v1_1/dru5tgtf6/image/upload", {
@@ -69,8 +78,6 @@ export default function SignUp() {
     })
       .then((res) => res.json())
       .then((url) => {
-        console.log(url);
-        console.log(`${url.url}`);
         const A_img = url.url;
         //
 
@@ -79,15 +86,11 @@ export default function SignUp() {
         //
         // console.log(`img_url${img_url}`);
         dispatch(sign_up({ name, email, password, A_img }));
+        setLoading(loading);
       })
       .catch((err) => {
         console.error(err);
       });
-    console.log({
-      name: data.get("firstName") + " " + data.get("lastName"),
-      email: data.get("email"),
-      password: data.get("password"),
-    });
   };
   //
   useEffect(() => {
@@ -198,7 +201,7 @@ export default function SignUp() {
                   />
                 </Grid>
               </Grid>
-              {loading ? (
+              {Loading ? (
                 <LoadingButton
                   type="submit"
                   fullWidth

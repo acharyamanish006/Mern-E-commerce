@@ -14,11 +14,12 @@ export const sign_in = createAsyncThunk(
     })
       .then((res) => res.json())
       .then((data) => {
-        // return data.success;
+        console.log(data);
+        return data;
 
-        alert(data.message);
+        // alert(data.message);
 
-        console.log(data.success);
+        // console.log(data.success);
 
         // window.location.reload(true);
       })
@@ -32,6 +33,7 @@ export const sign_in = createAsyncThunk(
 const signIn = createSlice({
   name: "signIn",
   initialState: {
+    user_id: "",
     auth: false,
     loading: false,
   },
@@ -41,7 +43,8 @@ const signIn = createSlice({
       state.loading = true;
     },
     [sign_in.fulfilled]: (state, action) => {
-      state.auth = true;
+      state.user_id = action.payload.user._id;
+      state.auth = action.payload.success;
       state.loading = false;
     },
     [sign_in.rejected]: (state, action) => {

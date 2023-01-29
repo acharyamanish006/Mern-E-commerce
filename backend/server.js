@@ -19,11 +19,11 @@ app.use(json_converter);
 app.use(cookieParser());
 app.use("/api/v1", router);
 //err handler
-app.use((err, req, res) => {
-  res.json({
-    message: err.message,
-  });
-});
+// app.use((err, req, res) => {
+//   res.json({
+//     message: err.message,
+//   });
+// });
 
 app.listen(process.env.PORT, () => {
   console.log(`port at ${process.env.PORT}`);

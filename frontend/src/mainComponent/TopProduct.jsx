@@ -1,21 +1,22 @@
 import React from "react";
 import "./css/topProduct.css";
 import Product from "../subComponent/Product";
-import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function TopProduct({ name, priceRange }) {
-  const [product, setProduct] = useState([]);
-  useEffect(() => {
-    fetch("http://localhost:8080/api/v1/get/all/product", {
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setProduct(data.product);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-  //.sort((a, b) => parseFloat(b.price) - parseFloat(a.price))
+  const { products, loading } = useSelector((state) => state.allProduct);
+
+  if (loading) {
+    return "Loading...";
+  }
+  if (!products) {
+    return "Loading...";
+  }
+  const sortedProducts = products
+    .slice()
+    .sort((a, b) => parseFloat(b.price) - parseFloat(a.price))
+    .filter((product) => product.price < priceRange);
+
   return (
     <div className="ProductContainer">
       <div className="ProductWrapper">
@@ -23,9 +24,9 @@ export default function TopProduct({ name, priceRange }) {
           <h3> {name}</h3>
         </div>
         <div className="ProductCollection">
-          {product
-            .sort((a, b) => parseFloat(b.price) - parseFloat(a.price))
-            .filter((product) => product.price < priceRange)
+          {sortedProducts
+            // .sort((a, b) => parseFloat(b.price) - parseFloat(a.price))
+            // .filter((product) => product.price < priceRange)
             .map((data) => {
               return <Product key={data._id} data={data} />;
             })

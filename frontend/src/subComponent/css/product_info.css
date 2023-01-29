@@ -1,0 +1,27 @@
+
+.product-info-img{
+    /* background-color: black; */
+    width: 30vw;
+}
+.product-info-body{
+    width: 50vw;
+    margin-left: 10vw;
+}
+
+.ProductDescription-wrapper{
+    background-color: white;
+    box-shadow: 1px 1px 8px 1px rgb(229, 228, 228);
+    border-radius: 0.4rem;
+    min-width: 90vw;
+    margin-bottom: 2rem;
+    padding: 10px;
+}
+@media only screen and (max-width: 800px) {
+    .product-info-img{
+        width: 80vw;
+    }
+    .product-info-body{
+        width: auto;
+        margin-left: auto;
+    }
+}

@@ -2,12 +2,17 @@ const Product = require("../models/Product.js");
 const User = require("../models/User.js");
 
 const add_product = async (req, res) => {
-  const { name, price, img } = req.body;
+  const { name, price, img, description, brand, condition, disPrice } =
+    req.body;
   try {
     let new_product = await Product.create({
       name: name,
       img: img,
       price: price,
+      description: description,
+      brand: brand,
+      condition: condition,
+      disPrice: disPrice,
     });
 
     res.json({
@@ -25,7 +30,26 @@ const get_product = async (req, res) => {
   const product_id = req.params.id;
   // console.log(id);
   try {
-    let product = await Product.findById(product_id);
+    let product = await Product.findById(product_id).populate({
+      path: "reviews",
+      populate: { path: "user" },
+    });
+    // let { Rating } = product;
+    // const { reviews } = product;
+    // Rating = 0;
+    // let totalRating = 0;
+    // let numberOfRating = 0;
+
+    // reviews.map((data) => {
+    //   numberOfRating += 1;
+    //   totalRating = data.rating + totalRating;
+    // });
+    // console.log(numberOfRating);
+    // console.log(totalRating);
+    // Rating = totalRating / numberOfRating;
+    // console.log(Rating);
+    // Rating.push()
+    // await product.save();
 
     res.json({
       success: true,
@@ -40,6 +64,12 @@ const get_product = async (req, res) => {
 };
 const get_allProduct = async (req, res) => {
   try {
+    // let product = await Product.find();
+    // const { rating } = product;
+    // res.json({
+    //   success: true,
+    //   rating,
+    // });
     await Product.find().then((product) => {
       res.json({
         success: true,
@@ -135,7 +165,6 @@ const add_toWishList = async (req, res) => {
   const product_id = req.params.id;
   try {
     const user_id = req.user._id;
-    const product = await Product.findById(product_id);
     const user = await User.findById(user_id).populate("myWishList");
     const { myWishList } = user;
     // let { isWishlist } = product;
@@ -151,14 +180,11 @@ const add_toWishList = async (req, res) => {
 
     myWishList.push(product_id);
     await user.save();
-    // isWishlist = true;
-    await product.save();
 
     res.json({
       success: true,
       message: "Added to Wishlist",
       user,
-      product,
     });
 
     // myWishList.map(async (data) => {
@@ -248,6 +274,100 @@ const search_product = async (req, res) => {
     });
   }
 };
+const add_review = async (req, res) => {
+  try {
+    // const user_id = req.user._id;
+    const product_id = req.params.id;
+    const { user_id, rating, review } = req.body;
+
+    const product = await Product.findById(product_id).populate("reviews");
+    const user = await User.findById(user_id);
+    // let { Rating } = product;
+    const { reviews } = product;
+    await reviews.push({
+      user: user,
+      rating: rating,
+      review: review,
+    });
+    /*
+        product.reviews.push(review)
+
+    product.numReviews = product.reviews.length
+
+    product.rating =
+      product.reviews.reduce((acc, item) => item.rating + acc, 0) /
+      product.reviews.length
+
+    await product.save()
+    */
+
+    let totalRating = 0;
+    let numberOfRating = 0;
+    let val;
+    val = reviews.filter((item) => {
+      numberOfRating += 1;
+      totalRating += item.rating;
+    });
+    // console.log(num);
+    // console.log((To / num).toFixed(0));
+    let ratingNum = (totalRating / numberOfRating).toFixed(0);
+    product.Rating = ratingNum;
+    // await product.push({
+    //   Rating: 5,
+    // });
+    // console.log(Rating);
+
+    await product.save();
+    res.json({
+      success: true,
+      product,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+const delete_wishlist = async (req, res) => {
+  try {
+    const product_id = req.params.id;
+    const user_id = req.user._id;
+    const user = await User.findById(user_id);
+    const { myWishList } = user;
+    let index = myWishList.indexOf(product_id);
+    myWishList.splice(index, 1);
+    await user.save();
+
+    res.json({
+      index,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
+const delete_cart = async (req, res) => {
+  try {
+    const product_id = req.params.id;
+    const user_id = req.user._id;
+    const user = await User.findById(user_id);
+    const { myCart } = user;
+    let index = myCart.indexOf(product_id);
+    myCart.splice(index, 1);
+    await user.save();
+    res.json({
+      index,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
 
 module.exports = {
   add_product,
@@ -260,4 +380,7 @@ module.exports = {
   get_cart,
   get_wishlist,
   search_product,
+  add_review,
+  delete_cart,
+  delete_wishlist,
 };

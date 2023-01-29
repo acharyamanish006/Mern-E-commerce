@@ -12,20 +12,15 @@ export const WishList = () => {
       .catch((err) => console.log(err));
   }, []);
   let totalPrice = 0;
-  // let i;
-  // for (i = 0; i < wishlist.length; i++) {
-  // console.log("hey");
+
   wishlist.filter((data) => {
-    totalPrice += data.price;
+    return (totalPrice += data.price);
   });
-  // }
-  console.log(totalPrice);
-  // let price = data.price.toLocaleString("en-US");
 
   return (
     <div className="rounded-md m-2 w-11/12 bg-white   ">
       {wishlist.map((data) => {
-        return <WishlistProduct key={data._id} data={data} />;
+        return <WishlistProduct key={data._id} data={data} icon={true} />;
       })}
       <div className=" flex justify-end m-4">
         <p className="font-bold font-mono">TotalPrice = </p>

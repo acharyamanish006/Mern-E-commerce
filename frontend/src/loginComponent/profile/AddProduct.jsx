@@ -14,18 +14,33 @@ import { post_product } from "../../Redux-toolkit/Features/addData";
 import "./css/profileSidebar.css";
 
 function AddProduct() {
-  const [loading, setloading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [img, setImg] = useState(null);
   const dispatch = useDispatch();
   const [product, setProduct] = useState("");
   const [price, setPrice] = useState("");
-  const [img_url, setImg_url] = useState("");
+  const [disPrice, setDisPrice] = useState(0);
+  const [description, setDescription] = useState("");
+  // const [img_url, setImg_url] = useState("");
   //
+  const [brand, setBrand] = useState("Nvidia");
+  const [condition, setCondition] = useState("Brand-New");
+
+  const brandChange = (event) => {
+    setBrand(event.target.value);
+  };
+  const conditionChange = (event) => {
+    setCondition(event.target.value);
+  };
 
   // const { loading } = useSelector((state) => state.addProduct);
 
   function add_data() {
-    setloading(true);
+    if (!img || !product || !price) {
+      return alert("fields can't be empty");
+    }
+
+    setLoading(true);
     const formData = new FormData();
     formData.append("file", img);
     formData.append("upload_preset", "vnoavbj1");
@@ -37,10 +52,18 @@ function AddProduct() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.url);
-        // setImg_url(data.url);
-        dispatch(post_product({ product, price, data }));
-        setloading(false);
+        dispatch(
+          post_product({
+            product,
+            price,
+            data,
+            description,
+            brand,
+            condition,
+            disPrice,
+          })
+        );
+        setLoading(false);
         alert("Product has been created successfully");
       })
       .catch((err) => {
@@ -72,8 +95,8 @@ function AddProduct() {
                 row
                 aria-labelledby="demo-controlled-radio-buttons-group"
                 name="controlled-radio-buttons-group"
-                //   value={value}
-                //   onChange={handleChange}
+                value={brand}
+                onChange={brandChange}
               >
                 <FormControlLabel
                   value="Nvidia"
@@ -100,16 +123,16 @@ function AddProduct() {
                 row
                 aria-labelledby="demo-controlled-radio-buttons-group"
                 name="controlled-radio-buttons-group"
-                //   value={value}
-                //   onChange={handleChange}
+                value={condition}
+                onChange={conditionChange}
               >
                 <FormControlLabel
-                  value="Brand New"
+                  value="Brand-New"
                   control={<Radio />}
                   label="Brand New"
                 />
                 <FormControlLabel
-                  value="Second Hand"
+                  value="Second-Hand"
                   control={<Radio />}
                   label="Second Hand"
                 />
@@ -138,6 +161,7 @@ function AddProduct() {
               cols="30"
               rows="10"
               className="bg-gray-50 resize-none ml-4 w-full p-2 border-2 rounded-md"
+              onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
           <div className="p-5">
@@ -157,7 +181,7 @@ function AddProduct() {
               name=""
               id=""
               className="bg-gray-50 ml-4 border-2 rounded-md"
-              // onChange={(e) => setPrice(e.target.value)}
+              onChange={(e) => setDisPrice(e.target.value)}
             />
           </div>
           <div className="p-5">
